@@ -1,0 +1,57 @@
+class Empleado {
+    protected String nombre;
+    protected int id;
+    protected double salario;
+
+    public Empleado(String nombre, int id, double salario) {
+        this.nombre = nombre;
+        this.id = id;
+        this.salario = salario;
+    }
+
+    public void mostrarInformacion() {
+        System.out.println("ID: " + id + ", Nombre: " + nombre + ", Salario: " + salario);
+    }
+}
+
+class EmpleadoTiempoCompleto extends Empleado {
+    private int diasVacaciones;
+
+    public EmpleadoTiempoCompleto(String nombre, int id, double salario, int diasVacaciones) {
+        super(nombre, id, salario);
+        this.diasVacaciones = diasVacaciones;
+    }
+
+    @Override
+    public void mostrarInformacion() {
+        super.mostrarInformacion();
+        System.out.println("Días de vacaciones: " + diasVacaciones);
+    }
+}
+
+class EmpleadoPorHora extends Empleado {
+    private double tarifaPorHora;
+    private int horasTrabajadas;
+
+    public EmpleadoPorHora(String nombre, int id, double tarifaPorHora, int horasTrabajadas) {
+        super(nombre, id, tarifaPorHora * horasTrabajadas);
+        this.tarifaPorHora = tarifaPorHora;
+        this.horasTrabajadas = horasTrabajadas;
+    }
+
+    @Override
+    public void mostrarInformacion() {
+        super.mostrarInformacion();
+        System.out.println("Horas trabajadas: " + horasTrabajadas + ", Tarifa por hora: " + tarifaPorHora);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        EmpleadoTiempoCompleto emp1 = new EmpleadoTiempoCompleto("Juan Perez", 101, 50000, 15);
+        EmpleadoPorHora emp2 = new EmpleadoPorHora("Ana Lopez", 102, 20, 160);
+
+        emp1.mostrarInformacion();
+        emp2.mostrarInformacion();
+    }
+}
